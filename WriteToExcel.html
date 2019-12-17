@@ -1,0 +1,51 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <script language="JavaScript">
+        function Save() {
+            var excelObj = new ActiveXObject("Excel.Application");
+
+            excelObj.visible = true;
+            var objWorkObj = excelObj.workbooks.open("C:/Users/gowtham.ramesh/Documents/My Data/myexcel.xlsx");
+            var XlSheet = objWorkObj.Sheets(1);
+            var irow = excelObj.ActiveSheet.UsedRange.Rows.Count + 1;
+            XlSheet.Cells(irow, 1).value = $("#txtName").val();
+            XlSheet.Cells(irow, 2).value = $("#txtEmail").val();
+            XlSheet.Cells(irow, 3).value = $("#txtMobile").val();
+            objWorkObj.save();
+            objWorkObj.close();
+            var excelObj = "";
+            var objWorkObj = "";
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <label for="sel1">Name</label>
+                <input type="text" class="form-control" id="txtName" />
+            </div>
+            <div class="col-md-8">
+                <label for="sel1">Email</label>
+                <input type="text" class="form-control" id="txtEmail" />
+            </div>
+            <div class="col-md-8">
+                <label for="sel1">Mobile Number</label>
+                <input type="text" class="form-control" id="txtMobile" />
+            </div>
+            <div class="col-md-6">
+                <button type="button" class="btn btn-primary" onclick="Save()">
+                    Save
+                </button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
